@@ -1,22 +1,50 @@
 //set CORS to call "appdemo" package on public server
-//ocpu.seturl("http://maayanlab.ocpu.io/chea3/R")
+ocpu.seturl("http://maayanlab.ocpu.io/chea3/R")
 
 var sliderClassName = 'slider';
 var chea3Results;
 
+
 function sliderChange(event) {
-    var libraryName = event.target.id.replace('_slider', '');
+    //change slider output text
     var outputId = `${event.target.id}_output`;
-
     document.getElementById(outputId).innerHTML = renderSliderValueString(event.target.value);
+    recolorAllNodes();
+}
 
-    var set1Values = chea3Results[libraryName].map(function (transcriptionFactors) {
-        return transcriptionFactors.set1.split('_')[0];
-    });
+function getColor(id){
+    return ($("#"+id).spectrum('get').toHexString())
+}
 
-    var set1ValuesSliderSubset = set1Values.splice(0, event.target.value);
+function recolorAllNodes(){
+    //reset to gray
+    nodes = document.querySelectorAll("circle");
+    for(var n of nodes) {
+        n.setAttribute("fill","gray");
+    }
 
+    //loop through sliders and colorpickers
+    sliders = document.querySelectorAll(".slider");
+    for (var s of sliders){
+        var libraryName = s.id.replace('_slider', '');
+        var colorpicker_id = libraryName + "_colorpicker";
+        console.log(colorpicker_id)
+        var set1Values = chea3Results[libraryName].map(function (transcriptionFactors) {
 
+            return transcriptionFactors.set1.split('_')[0];
+
+        });
+        var set1ValuesSliderSubset = set1Values.splice(0, s.value);
+        for (var tf of set1ValuesSliderSubset) {
+            console.log(tf)
+            node  = document.getElementById(tf);
+
+            if(node){
+                node.setAttribute("fill",getColor(colorpicker_id));
+            }
+        }
+
+    }
 
 }
 
@@ -29,7 +57,7 @@ function addSliderEventListeners() {
 }
 
 function renderSliderValueString(value) {
-    return `${value} TFs highlighted in network`;
+    return `Top ${value} TFs highlighted in network`;
 }
 
 function renderCaption(libraryName) {
@@ -45,8 +73,20 @@ function renderCaption(libraryName) {
 		<input id="${captionId}" class="${sliderClassName}" type="range" min="0" max="50" value="${value}">
 		<span id="${captionId}_output" style="font-weight:lighter;font-size:small,font-style:italic">
 		  ${renderSliderValueString(value)}
-		</span>
+		</span>	
+		<input type='text' id="${libraryName}_colorpicker" />
 	</caption>`;
+}
+
+function renderColorPicker(libraryName) {
+    var colorpicker_id = libraryName + "_colorpicker";
+    $("#"+colorpicker_id)
+        .on('change', function() {
+            recolorAllNodes();
+        })
+        .spectrum({
+            color: "#4dca4f"
+        });
 }
 
 function renderTable(libraryName) {
@@ -67,6 +107,7 @@ var buttonCommon = {
     }
 };
 
+
 $(document).ready(function () {
     $('#example-genelist').on('click', function () {
         var gl = document.getElementById("genelist");
@@ -81,6 +122,18 @@ $(document).ready(function () {
     $('#submit-genelist').on('click', function (evt) {
 
         $('#loading-screen').removeClass('d-none');
+        var geneset = document.getElementById("genelist").value.split(/\n/);
+
+        //send contents of text box to chea3 server
+        var request = ocpu.call("queryCheaWeb",{
+            geneset: geneset,
+            set_name: "usergeneset",
+            n_results: 100},
+            function(session){
+            session.getObject(function(data){
+                alert(data);
+            })
+        })
 
         setTimeout(function () {
             $('#loading-screen').addClass('d-none');
@@ -106,6 +159,8 @@ $(document).ready(function () {
                 results_div.innerHTML += captionAndTableMarkup;
 
                 for (i = 0; i < lib_names.length; i++) {
+
+                    renderColorPicker(lib_names[i]);
 
                     var lib_results = results[lib_names[i]];
                     var column_names = Object.keys(lib_results[1])
@@ -147,11 +202,7 @@ $(document).ready(function () {
 
             });
 
-
-            //show results tables
-
-
-            // $btn.button('reset');
+            
         }, 1000);
 
 
@@ -160,20 +211,6 @@ $(document).ready(function () {
     });
 });
 
-
-//attach event listeners
-// function highlightNodes(
-
-
-//Multiple buttons 
-var buttons = document.querySelectorAll(".btns");
-
-//Loop through
-for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function () {
-        console.log("Hello World");
-    });
-}
 
 
 	

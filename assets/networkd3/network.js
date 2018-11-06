@@ -25,6 +25,8 @@ d3.json("assets/networkd3/tf.json", function(json){
 var simulation = d3.forceSimulation()
           .nodes(json.nodes_dat);
 
+
+
 //create some forces                            
 var link_force =  d3.forceLink(json.links_dat)
                         .id(function(d) { return d.name; }).strength(2.5);   
@@ -59,9 +61,6 @@ var link = g.append("g")
       .attr("stroke-width", 0.3)
       .style("stroke", linkColour);   
 
-
-
-
 //draw circles for the nodes 
 var node = g.append("g")
         .attr("class", "nodes") 
@@ -70,10 +69,11 @@ var node = g.append("g")
         .enter()
         .append("circle")
         .attr("r", radius)
+        .attr("id",function(d) {return d.name;})
         .attr("fill", circleColour);
-        
 
-              //add text for the nodes
+        
+//add text for the nodes
 var label = g.append("g")
     .attr("class","label")
     .selectAll("text")
@@ -104,7 +104,7 @@ zoom_handler(network_svg);
 
 //Function to choose what color circle we have
 //Let's return blue for males and red for females
-function circleColour(d){
+function circleColour(){
   return("gray");
   
 }

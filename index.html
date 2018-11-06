@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="assets/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/tooltips/css_tooltips.css">
     <link rel="stylesheet" href="assets/networkd3/network_options.css">
+    <link rel="stylesheet" href="assets/spectrum/spectrum.css">
+
 </head>
 <body>
 
@@ -80,19 +82,19 @@
 <!-- Block 1: Query Submissions / Results Page -->
 
 
-<section class="cid-r0JOAk81nJ mbr-fullscreen" id="header15-1">
+<section class="cid-r0JOAk81nJ mbr-fullscreen" id="header15-1" style="width:100%;">
 
-    <div class="network-overlay mbr_fullscreen" id="tfnet"
-         style="opacity: 1; background-color: rgb(255, 255, 255);"></div>
+    <div class="network-overlay mbr-fullscreen" id="tfnet"
+         style="opacity:1;background-color: rgb(255,255,255);width:100%;"></div>
 
 
-    <div class="mbr-overlay" id='translucent-net' style="opacity: 0.75; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay mbr-fullscreen" id='translucent-net' style="bottom: 0px;left: 0px;position: fixed;right: 0px;top: 0px;opacity: 0.75;background-color:rgb(255,255,255);width:100%;">
     </div>
 
 
     <!--Div that contains all the querying elements--->
     <div class="container align-right" id="query-results"
-         style="float:right;width:40%;margin-right:0;margin-top:4rem;padding-right: 3%">
+         style="bottom: 0px;left: 0px;right: 0px;top: 0px;width:50%;margin-right:0;margin-top:4rem;padding-right:0;">
 
 
         <div class="row">
@@ -133,7 +135,7 @@
 
 
     <!--Results loading screen--->
-    <div id="loading-screen" class="mbr-overlay d-none" opacity: 0.95; background-color: rgb(255, 255, 255);>
+    <div id="loading-screen" class="mbr-overlay d-none">
         <div class="loader"></div>
     </div>
 
@@ -148,179 +150,6 @@
 
 <!-- Block 2: About ChEA3 -->
 
-<section class="section-table cid-r0K21ocPOv" id="table1-u">
-
-
-    <div class="container container-table">
-        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-            Results</h2>
-        <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
-            Browse library results and interact with the network. Publication-quality table and network views are
-            downloadable in <em>.svg</em> format.</h3>
-        <div class="table-wrapper">
-            <div class="container">
-                <div class="row search">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6">
-                        <div class="dataTables_filter">
-                            <label class="searchInfo mbr-fonts-style display-7">Search:</label>
-                            <input class="form-control input-sm" disabled="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container scroll">
-                <table class="table isSearch" cellspacing="0">
-                    <thead>
-                    <tr class="table-heads ">
-
-
-                        <th class="head-item mbr-fonts-style display-7">
-                            NAME
-                        </th>
-                        <th class="head-item mbr-fonts-style display-7">
-                            AGE
-                        </th>
-                        <th class="head-item mbr-fonts-style display-7">
-                            DATE
-                        </th>
-                        <th class="head-item mbr-fonts-style display-7">
-                            SALARY
-                        </th>
-                        <th class="head-item mbr-fonts-style display-7">
-                            SALARY
-                        </th>
-                        <th class="head-item mbr-fonts-style display-7">
-                            SALARY
-                        </th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-
-
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Jeanna Schmal</td>
-                        <td class="body-item mbr-fonts-style display-7">44</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-10-17</td>
-                        <td class="body-item mbr-fonts-style display-7">$317.000</td>
-                        <td class="body-item mbr-fonts-style display-7">$317.000</td>
-                        <td class="body-item mbr-fonts-style display-7">$317.000</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Caren Rials</td>
-                        <td class="body-item mbr-fonts-style display-7">35</td>
-                        <td class="body-item mbr-fonts-style display-7">2013-04-12</td>
-                        <td class="body-item mbr-fonts-style display-7">$445.500</td>
-                        <td class="body-item mbr-fonts-style display-7">$445.500</td>
-                        <td class="body-item mbr-fonts-style display-7">$445.500</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Leon Rogol</td>
-                        <td class="body-item mbr-fonts-style display-7">66</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-22</td>
-                        <td class="body-item mbr-fonts-style display-7">$152.558</td>
-                        <td class="body-item mbr-fonts-style display-7">$152.558</td>
-                        <td class="body-item mbr-fonts-style display-7">$152.558</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    <tr>
-
-
-                        <td class="body-item mbr-fonts-style display-7">Shala Barrera</td>
-                        <td class="body-item mbr-fonts-style display-7">70</td>
-                        <td class="body-item mbr-fonts-style display-7">2016-05-15</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                        <td class="body-item mbr-fonts-style display-7">$459.146</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="container table-info-container">
-                <div class="row info">
-                    <div class="col-md-6">
-                        <div class="dataTables_info mbr-fonts-style display-7">
-                            <span class="infoBefore">Showing</span>
-                            <span class="inactive infoRows"></span>
-                            <span class="infoAfter">entries</span>
-                            <span class="infoFilteredBefore">(filtered from</span>
-                            <span class="inactive infoRows"></span>
-                            <span class="infoFilteredAfter"> total entries)</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="mbr-section content4 cid-r0K1l83kKh" id="content4-o">
 
@@ -1001,10 +830,14 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <!-- <script src="assets/d3/d3.v5.min.js"></script> -->
 
+<!--OpenCPU--->
+<script src="//cdn.opencpu.org/opencpu-0.4.js"></script>
+
 
 <!--bootstrap/mobirise--->
 <script src="assets/popper/popper.min.js"></script>
 <script src="assets/tether/tether.min.js"></script>
+
 
 <script src="assets/smoothscroll/smooth-scroll.js"></script>
 <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
@@ -1012,8 +845,8 @@
 <script src="assets/datatables/dataTables.buttons.min.js"></script>
 <script src="assets/datatables/jszip.min.js"></script>
 <script src="assets/datatables/buttons.html5.min.js"></script>
-<script src="assets/datatables/vfs_fonts.js"></script>
 <script src="assets/datatables/pdfmake.min.js"></script>
+<script src="assets/datatables/vfs_fonts.js"></script>
 <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
 <script src="assets/sociallikes/social-likes.js"></script>
 <script src="assets/dropdown/js/script.min.js"></script>
@@ -1021,6 +854,8 @@
 <script src="assets/networkd3/network.js"></script>
 <script src="assets/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="assets/datatables/buttons.colVis.min.js"></script>
+<script src="assets/spectrum/spectrum.js"></script>
+
 
 <!-- OpenCPU scripts -->
 <script src="assets/chea-query/submit-query.js"></script>
