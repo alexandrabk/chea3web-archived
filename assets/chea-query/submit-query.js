@@ -122,32 +122,20 @@ $(document).ready(function () {
     $('#submit-genelist').on('click', function (evt) {
 
         $('#loading-screen').removeClass('d-none');
+
+
+
         var geneset = document.getElementById("genelist").value.split(/\n/);
 
         //send contents of text box to chea3 server
         var request = ocpu.call("queryCheaWeb",{
             geneset: geneset,
-            set_name: "usergeneset",
-            n_results: 100},
+            set_name: "usergeneset"},
             function(session){
             session.getObject(function(data){
-                alert(data);
-            })
-        })
-
-        setTimeout(function () {
-            $('#loading-screen').addClass('d-none');
-            //remove tools
-            document.getElementById("tfea-title").remove();
-            document.getElementById('translucent-net').remove();
-            document.getElementById("tfea-submission").remove();
-
-            //load fake results
-            jQuery.get('assets/chea-query/example_results.json', function (results) {
-                chea3Results = results;
-                var lib_names = Object.keys(results);
+                chea3Results = JSON.parse(data);
+                var lib_names = Object.keys(chea3Results);
                 var results_div = document.getElementById("query-results");
-
 
                 var captionAndTableMarkup = lib_names.reduce(function (accumlator, libraryName) {
                     accumlator += renderCaption(libraryName)
@@ -158,21 +146,21 @@ $(document).ready(function () {
 
                 results_div.innerHTML += captionAndTableMarkup;
 
-                for (i = 0; i < lib_names.length; i++) {
+                for (var i = 0; i < lib_names.length; i++) {
 
                     renderColorPicker(lib_names[i]);
 
-                    var lib_results = results[lib_names[i]];
-                    var column_names = Object.keys(lib_results[1])
+                    var lib_results = chea3Results[lib_names[i]];
 
                     $(`#table_${lib_names[i]}`).DataTable({
                         data: lib_results,
                         aoColumns: [
+                            {mData: "rank", sTitle: "Rank"},
                             {mData: "set1", sTitle: "TF Gene Set", sWidth: "20em"},
                             {mData: "intersect", sTitle: "Intersection"},
-                            {mData: "FET p-value", sTitle: "FET p-value"}],
+                            {mData: "FET.p.val", sTitle: "FET p-value"}],
                         scrollY: "100px",
-                        scrollX: false,
+                        scrollX: true,
                         scrollCollapse: true,
                         paging: false,
 
@@ -200,13 +188,95 @@ $(document).ready(function () {
 
                 addSliderEventListeners();
 
+
+
+
+
+
+                $('#loading-screen').addClass('d-none');
+
+
+
             });
 
-            
-        }, 1000);
 
 
+        });
+
+
+        //FAKE RESULTS -- USE OF
+        // setTimeout(function () {
+        //     $('#loading-screen').addClass('d-none');
+        //     //remove tools
+        //     document.getElementById("tfea-title").remove();
+        //     document.getElementById('translucent-net').remove();
+        //     document.getElementById("tfea-submission").remove();
         //
+        //     //load fake results
+        //     jQuery.get('assets/chea-query/example_results.json', function (results) {
+        //         chea3Results = results;
+        //         var lib_names = Object.keys(results);
+        //         var results_div = document.getElementById("query-results");
+        //
+        //
+        //         var captionAndTableMarkup = lib_names.reduce(function (accumlator, libraryName) {
+        //             accumlator += renderCaption(libraryName)
+        //             accumlator += renderTable(libraryName);
+        //
+        //             return accumlator;
+        //         }, '');
+        //
+        //         results_div.innerHTML += captionAndTableMarkup;
+        //
+        //         for (i = 0; i < lib_names.length; i++) {
+        //
+        //             renderColorPicker(lib_names[i]);
+        //
+        //             var lib_results = results[lib_names[i]];
+        //             var column_names = Object.keys(lib_results[1])
+        //
+        //             $(`#table_${lib_names[i]}`).DataTable({
+        //                 data: lib_results,
+        //                 aoColumns: [
+        //                     {mData: "set1", sTitle: "TF Gene Set", sWidth: "20em"},
+        //                     {mData: "intersect", sTitle: "Intersection"},
+        //                     {mData: "FET p-value", sTitle: "FET p-value"}],
+        //                 scrollY: "100px",
+        //                 scrollX: false,
+        //                 scrollCollapse: true,
+        //                 paging: false,
+        //
+        //                 fixedColumns: true,
+        //                 dom: "Bfrtip",
+        //                 buttons: [
+        //                     $.extend(true, {}, buttonCommon, {
+        //                         extend: 'copyHtml5'
+        //                     }),
+        //                     $.extend(true, {}, buttonCommon, {
+        //                         extend: 'excelHtml5'
+        //                     }),
+        //                     $.extend(true, {}, buttonCommon, {
+        //                         extend: 'pdfHtml5'
+        //                     }),
+        //                     $.extend(true, {}, buttonCommon, {
+        //                         extend: 'colvis'
+        //                     })
+        //                 ]
+        //             });
+        //             $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+        //
+        //
+        //         }
+        //
+        //         addSliderEventListeners();
+        //
+        //     });
+        //
+        //
+        // }, 1000);
+
+
+
 
     });
 });
