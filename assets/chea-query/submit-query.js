@@ -158,7 +158,7 @@ $(document).ready(function () {
                             {mData: "rank", sTitle: "Rank"},
                             {mData: "set1", sTitle: "TF Gene Set", sWidth: "20em"},
                             {mData: "intersect", sTitle: "Intersection"},
-                            {mData: "FET.p.val", sTitle: "FET p-value"}],
+                            {mData: "FET p-value", sTitle: "FET p-value"}],
                         scrollY: "100px",
                         scrollX: true,
                         scrollCollapse: true,
